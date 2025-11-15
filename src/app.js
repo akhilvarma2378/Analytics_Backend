@@ -1,16 +1,22 @@
 const express = require('express');
+require('express-async-errors');
+const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth.routes');
+const analyticsRoutes = require('./routes/analytics.routes');
+const swaggerUI = require('swagger-ui-express');
+const swaggerSpec = require('./swagger');
 
 const app = express();
-app.use(express.json());
+app.use(bodyParser.json({ limit: '1mb' }));
 
-// Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/analytics', analyticsRoutes);
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
-//Global Catch
 app.use((err, req, res, next) => {
   console.error(err);
-  return res.status(500).json({ error: err.message });
+  res.status(500).json({ error: err.message || 'Internal server error' });
 });
 
 module.exports = app;
+
