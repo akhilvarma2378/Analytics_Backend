@@ -98,49 +98,38 @@ src/
 ```bash
 git clone https://github.com/<your-username>/analytics-backend.git
 cd analytics-backend
+```
+
 Configure Environment Variables
 Create a .env file in the root directory:
 
 env
-Copy code
+
+```bash
 DATABASE_URL="postgresql://postgres:postgres@localhost:5432/analytics"
 REDIS_URL="redis://localhost:6379"
 PORT=4000
+```
+
 Install Dependencies
-bash
-Copy code
+```bash
 npm install
+```
+
 Setup Database
 Run Prisma migrations:
-
-bash
-Copy code
+```bash
 npx prisma migrate dev --name init
-(Optional) Open Prisma Studio:
+```
 
-bash
-Copy code
-npx prisma studio
-Start the Server
-bash
-Copy code
-npm start
-or start with auto-reload:
-
-bash
-Copy code
+```bash
 npm run dev
 Server is now running at:
+```
 
-arduino
-Copy code
-http://localhost:4000
-🐋 Docker Setup
-To build and run using Docker:
-
-bash
-Copy code
+```bash
 docker-compose up --build
+```
 This will start:
 
 App Server (4000)
@@ -153,18 +142,19 @@ Redis (6379)
 Use Postman Collection or cURL:
 
 Register App
-bash
-Copy code
+```bash
 curl -X POST http://localhost:4000/api/auth/register \
 -H "Content-Type: application/json" \
 -d '{"name": "Test App", "ownerEmail": "admin@example.com"}'
+```
 Submit Analytics Event
-bash
-Copy code
+```bash
 curl -X POST http://localhost:4000/api/analytics/collect \
 -H "Content-Type: application/json" \
 -H "x-api-key: <YOUR_API_KEY>" \
 -d '{"event": "click", "url": "https://example.com", "timestamp": "2024-11-15T10:30:00Z"}'
+```
+
 🚀 Deployment
 This app is designed for easy deployment on platforms such as:
 
@@ -181,7 +171,7 @@ Define PORT environment variable
 
 Run Prisma migration using:
 
-bash
-Copy code
+```bash
 npx prisma migrate deploy
+```
 Use Dockerfile for container-based deployment
