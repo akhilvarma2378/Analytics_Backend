@@ -1,10 +1,21 @@
 FROM node:18-alpine
 
 WORKDIR /app
+
+# Copy only package files first (for caching)
 COPY package*.json ./
-RUN npm ci --only=production
+
+# Install ALL dependencies (including dev, to support Prisma Generate)
+RUN npm install
+
+# Copy the rest of the app code
 COPY . .
 
-ENV NODE_ENV=production
+# Generate Prisma client
+RUN npx prisma generate
+
+# Expose port
 EXPOSE 4000
-CMD ["node", "src/server.js"]
+
+# Start the app
+CMD ["npm", "start"]
