@@ -2,20 +2,15 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy only package files first (for caching)
-COPY package*.json ./
-
-# Install ALL dependencies (including dev, to support Prisma Generate)
-RUN npm install
-
-# Copy the rest of the app code
+# Copy everything first (including prisma schema)
 COPY . .
 
-# Generate Prisma client
+# Install all dependencies (this now sees prisma folder)
+RUN npm install
+
+# Generate Prisma client (optional, postinstall will do this)
 RUN npx prisma generate
 
-# Expose port
 EXPOSE 4000
 
-# Start the app
 CMD ["npm", "start"]
