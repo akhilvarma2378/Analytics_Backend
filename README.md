@@ -2,6 +2,8 @@
 
 A scalable backend API built using **Node.js**, **Express**, and **Prisma ORM** with **PostgreSQL** for database and **Redis** for caching and rate limiting. This service enables seamless collection and analysis of analytics events from multiple websites or applications using API keys.
 
+Access it Live using this link https://analytics-backend-883p.onrender.com
+
 ## 🚀 Features
 
 - 🔑 **API Key Management**
