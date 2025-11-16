@@ -30,21 +30,8 @@ A scalable backend API built using **Node.js**, **Express**, and **Prisma ORM** 
 
 ## 📂 Project Structure
 
-src/
-├── controllers/
-├── middleware/
-├── prisma/
-├── routes/
-├── app.js
-└── server.js
-prisma/
-├── schema.prisma
-└── migrations/
+<pre> ```bash src/ ├── controllers/ ├── middleware/ ├── prisma/ ├── routes/ ├── app.js └── server.js prisma/ ├── schema.prisma └── migrations/ ``` </pre>
 
-yaml
-Copy code
-
----
 
 ## 🛠️ Tech Stack
 
